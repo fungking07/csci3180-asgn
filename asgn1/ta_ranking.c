@@ -7,3 +7,7 @@ int main(int argc, char const *argv[]) {
   fins = fopen("instructors.txt", "r");
   return 0;
 }
+
+char course(FILE *fins, FILE *fcan){
+  
+}

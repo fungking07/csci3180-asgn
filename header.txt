@@ -11,7 +11,7 @@
  * http://www.cuhk.edu.hk/policy/academichonesty/
  *
  * Assignment N
- * Name : Chan Tai Man
- * Student ID : 1009234567
- * Email Addr : tmchan9@cse.cuhk.edu.hk
+ * Name : Lam King Fung
+ * Student ID : 1155108968
+ * Email Addr : kflam8@cse.cuhk.edu.hk
  */

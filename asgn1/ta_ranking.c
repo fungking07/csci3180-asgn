@@ -94,6 +94,7 @@ void course(FILE *fins, FILE *fcan){
   /*
     If the files are not empty
   */
+
   //printf("Both file not empty!\n");
   fout = fopen("output.txt", "wb");
   fseek(fins, 0, SEEK_SET);
@@ -102,14 +103,23 @@ void course(FILE *fins, FILE *fcan){
   char canbuffer[160];
   //printf("Content as follows:\n");
   while(fgets(insbuffer, sizeof(insbuffer), fins) != NULL){
+
     /*
-      Setting up the variable of each course
+      Setting up the variable of each course parsed
+    */
+
+    /*
+      placeholder SIDs
     */
     char firstPlace[15] = "0000000000 ";
     char secondPlace[15] = "0000000000 ";
     char thirdPlace[15] = "0000000000 ";
     float ta_score[3] = {0, 0, 0};
     char *cCode, *cReqSkill1, *cReqSkill2, *cReqSkill3, *cOptSkill1, *cOptSkill2, *cOptSkill3, *cOptSkill4, *cOptSkill5;
+
+    /*
+      extracting the substring in a record
+    */
     cCode = strndup(insbuffer, 5);
     cReqSkill1 = strndup(insbuffer + 5, 15);
     cReqSkill2 = strndup(insbuffer + 20, 15);
@@ -123,7 +133,14 @@ void course(FILE *fins, FILE *fcan){
     //printf("%s\n", cCode);
     fseek(fcan, 0, SEEK_SET);
     while(fgets(canbuffer, sizeof(canbuffer), fcan) != NULL){
+      /*
+        Setting up the variable of each course parsed
+      */
       char *SID, *skill1, *skill2, *skill3, *skill4, *skill5, *skill6, *skill7, *skill8, *firstPref, *secondPref, *thirdPref;
+
+      /*
+        extracting the substring in a record
+      */
       SID = strndup(canbuffer, 11);
       skill1 = strndup(canbuffer + 11, 15);
       skill2 = strndup(canbuffer + 26, 15);
@@ -137,6 +154,7 @@ void course(FILE *fins, FILE *fcan){
       secondPref = strndup(canbuffer + 136, 5);
       thirdPref = strndup(canbuffer + 141, 5);
       //printf("%s\n", canbuffer);
+
       /*
         Start the selection process
       */
@@ -161,7 +179,7 @@ void course(FILE *fins, FILE *fcan){
       }
 
       /*
-        add the points for optional skills
+        add the points for optional skills if all required skills are met
       */
       if(reqSkill1 && reqSkill2 && reqSkill3){
         score++;

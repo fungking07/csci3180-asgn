@@ -39,7 +39,7 @@ int main(int argc, char const *argv[]) {
     printf("non-existing file!\n");
     exit(1);
   }
-  course(fins, fcan);
+  output(fins, fcan);
   return 0;
 }
 
@@ -260,7 +260,7 @@ void output(FILE *fins, FILE *fcan){
                 ta_score[1] = score;
                 continue;
               }else{
-                if(score > ta_score[3]){
+                if(score > ta_score[2]){
                   strcpy(thirdPlace, SID);
                   ta_score[2] = score;
                   continue;
@@ -294,7 +294,7 @@ void output(FILE *fins, FILE *fcan){
             ta_score[1] = score;
             continue;
           }else{
-            if(score > ta_score[3]){
+            if(score > ta_score[2]){
               strcpy(thirdPlace, SID);
               ta_score[2] = score;
               continue;

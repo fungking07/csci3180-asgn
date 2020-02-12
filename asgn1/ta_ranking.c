@@ -22,7 +22,7 @@
 #include <string.h> 
 #include <stdbool.h>
 
-void course(FILE *fins, FILE *fcan);
+void output(FILE *fins, FILE *fcan);
 
 int main(int argc, char const *argv[]) {
   /*
@@ -43,7 +43,7 @@ int main(int argc, char const *argv[]) {
   return 0;
 }
 
-void course(FILE *fins, FILE *fcan){
+void output(FILE *fins, FILE *fcan){
 
   /*
     File I/O

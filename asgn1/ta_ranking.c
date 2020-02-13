@@ -23,6 +23,8 @@
 #include <stdbool.h>
 
 void output(FILE *fins, FILE *fcan);
+void checkInsEmpty(FILE *fins, FILE *fout);
+void checkCansEmpty(FILE *fins, FILE *fcan, FILE *fout);
 
 int main(int argc, char const *argv[]) {
   /*
@@ -50,46 +52,8 @@ void output(FILE *fins, FILE *fcan){
   */
   FILE *fout;
 
-  /*
-    check if instructor.txt is empty
-  */
-  int inssize;
-  fseek(fins, 0, SEEK_END);
-  inssize = ftell(fins);
-
-  /*
-    write an empty file
-  */
-  if (inssize == 0) {
-    //printf("instructors.txt is empty\n");
-    fout = fopen("output.txt", "wb");
-    //fprintf(fout,"");
-    exit(1);
-  }
-
-  /*
-    check if candidate.txt is empty
-  */
-  int cansize;
-  fseek(fcan, 0, SEEK_END);
-  cansize = ftell(fcan);
-
-  /*
-    write the file with placeholder SID for each course
-  */
-  if(cansize == 0){
-    fseek(fins, 0, SEEK_SET);
-    //printf("candidates.txt is empty\n");
-    char insbuffer[130];
-    fout = fopen("output.txt", "wb");
-    while(fgets(insbuffer, sizeof(insbuffer), fins) != NULL){
-      //printf("%s\n", insbuffer);
-      char *cCode;
-      cCode = strndup(insbuffer, 5);
-      fprintf(fout, "%s0000000000 0000000000 0000000000 \n", cCode);
-    }
-    exit(1);
-  }
+  checkInsEmpty(fins, fout);
+  checkCansEmpty(fins, fcan, fout);
 
   /*
     If the files are not empty
@@ -118,7 +82,7 @@ void output(FILE *fins, FILE *fcan){
     char *cCode, *cReqSkill1, *cReqSkill2, *cReqSkill3, *cOptSkill1, *cOptSkill2, *cOptSkill3, *cOptSkill4, *cOptSkill5;
 
     /*
-      extracting the substring in a record
+      extracting the substring in a course record
     */
     cCode = strndup(insbuffer, 5);
     cReqSkill1 = strndup(insbuffer + 5, 15);
@@ -330,5 +294,50 @@ void output(FILE *fins, FILE *fcan){
     //printf("\t %s%s%s\n", firstPlace, secondPlace, thirdPlace);
     //printf("\n");
     fprintf(fout, "%s%s%s\n", firstPlace, secondPlace, thirdPlace);
+  }
+}
+
+void checkInsEmpty(FILE *fins, FILE *fout){
+  /*
+    check if instructor.txt is empty
+  */
+  int inssize;
+  fseek(fins, 0, SEEK_END);
+  inssize = ftell(fins);
+
+  /*
+    write an empty file
+  */
+  if (inssize == 0) {
+    //printf("instructors.txt is empty\n");
+    fout = fopen("output.txt", "wb");
+    //fprintf(fout,"");
+    exit(1);
+  }
+}
+
+void checkCansEmpty(FILE *fins, FILE *fcan, FILE *fout){
+  /*
+    check if candidate.txt is empty
+  */
+  int cansize;
+  fseek(fcan, 0, SEEK_END);
+  cansize = ftell(fcan);
+
+  /*
+    write the file with placeholder SID for each course
+  */
+  if(cansize == 0){
+    fseek(fins, 0, SEEK_SET);
+    //printf("candidates.txt is empty\n");
+    char insbuffer[130];
+    fout = fopen("output.txt", "wb");
+    while(fgets(insbuffer, sizeof(insbuffer), fins) != NULL){
+      //printf("%s\n", insbuffer);
+      char *cCode;
+      cCode = strndup(insbuffer, 5);
+      fprintf(fout, "%s0000000000 0000000000 0000000000 \n", cCode);
+    }
+    exit(1);
   }
 }

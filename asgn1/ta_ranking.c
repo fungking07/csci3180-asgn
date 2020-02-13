@@ -265,10 +265,12 @@ void output(FILE *fins, FILE *fcan){
                   ta_score[2] = score;
                   continue;
                 }
-                if(strcmp(SID, thirdPlace) < 0){
-                  strcpy(thirdPlace, SID);
-                  ta_score[2] = score;
-                  continue;
+                if(score == ta_score[2]){
+                  if(strcmp(SID, thirdPlace) < 0){
+                    strcpy(thirdPlace, SID);
+                    ta_score[2] = score;
+                    continue;
+                  }
                 }
               }
               
@@ -299,13 +301,13 @@ void output(FILE *fins, FILE *fcan){
               ta_score[2] = score;
               continue;
             }
-            if(strcmp(SID, thirdPlace) < 0){
-              strcpy(thirdPlace, SID);
-              ta_score[2] = score;
-              continue;
-            }
+            if(score == ta_score[2]){
+              if(strcmp(SID, thirdPlace) < 0){
+                strcpy(thirdPlace, SID);
+                ta_score[2] = score;
+                continue;
+              }
           }
-          
         }
 
         /*
@@ -316,10 +318,12 @@ void output(FILE *fins, FILE *fcan){
           ta_score[2] = score;
           continue;
           }
-        if(strcmp(SID, thirdPlace) < 0){
-          strcpy(thirdPlace, SID);
-          ta_score[2] = score;
-          continue;
+        if(score == ta_score[2]){
+          if(strcmp(SID, thirdPlace) < 0){
+            strcpy(thirdPlace, SID);
+             ta_score[2] = score;
+            continue;
+          }
         }
       }
     }

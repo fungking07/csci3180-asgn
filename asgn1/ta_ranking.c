@@ -307,9 +307,9 @@ void output(FILE *fins, FILE *fcan){
                 ta_score[2] = score;
                 continue;
               }
+            }
           }
         }
-
         /*
           sitiation: score of the ta >= to currently rank 3 ta
         */

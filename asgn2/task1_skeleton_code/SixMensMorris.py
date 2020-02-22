@@ -1,6 +1,6 @@
 """
-Name: XXX
-Student ID: XXX
+Name: Lam King Fung
+Student ID: 1155108968
 """
 
 """Please refer to the specification of Task 1 for more
@@ -58,6 +58,12 @@ class SixMensMorris():
             print('Player 1 is a computer.')
 
         ### TODO (Choose the type for player 2)
+        if x == 1:
+            self.players.append(Human(2, self.board))
+            print('Player 2 is a human.')
+        elif x == 2:
+            self.players.append(Computer(2, self.board))
+            print('Player 2 is a computer.')
 
         # Start the game
         self.board.printBoard()

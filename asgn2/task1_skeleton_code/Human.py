@@ -1,6 +1,6 @@
 """
-Name: Lam King Fung
-Student ID: 1155108968
+Name: XXX
+Student ID: XXX
 """
 
 from utils import *
@@ -10,12 +10,12 @@ class Human(Player):
     def __init__(self, id, board):
         super(Human, self).__init__(id, board)
 
-    def nextPut(self):
+    def next_put(self):
         """
         This function takes a single location input for PUT-movement. It keeps checking
         whether it is a legal PUT-movement until the input is a legal PUT-movement. After
         getting the correct input, it then does the movement on the board (by calling
-        board.putPiece()). It returns the position where the piece locates because 
+        board.put_piece()). It returns the position where the piece locates because 
         it might trigger the end of the game.
         """
         valid_flag = True
@@ -25,20 +25,20 @@ class Human(Player):
             if len(x) != 1:
                 print('Invalid Put-Movement.')
             else:
-                x = sym2pos(x)
-                if not self.board.checkPut(x):
+                x = sym_to_pos(x)
+                if not self.board.check_put(x):
                     print('Invalid Put-Movement.')
                 else:
                     valid_flag = False
-        self.board.putPiece(x, self)
+        self.board.put_piece(x, self)
         return x
 
-    def nextMove(self):
+    def next_move(self):
         """
         This function takes two location inputs (s, t) for MOVE-movement. It keeps checking
         whether it is a legal MOVE-movement until the input is a legal MOVE-movement.
         After getting the correct input, it then does the movement on the board (by calling
-        board.movePiece()). It returns the position to which the piece moves because 
+        board.move_piece()). It returns the position to which the piece moves because 
         it might trigger the end of the game.
         """
         valid_flag = True
@@ -48,15 +48,15 @@ class Human(Player):
 
             ### TODO (check the legal input)
 
-        self.board.movePiece(xs, xt, self)
+        self.board.move_piece(xs, xt, self)
         return xt
 
-    def nextRemove(self, opponent):
+    def next_remove(self, opponent):
         """
         This function takes a location input for REMOVE-movement. It keeps checking whether
         it is a legal REMOVE-movement until the input is a legal REMOVE-movement. After
         getting the correct input, it then does REMOVE-movement on the board (by calling
-        board.removePiece()).
+        board.remove_piece()).
         """
         valid_flag = True
         while valid_flag:
@@ -65,6 +65,6 @@ class Human(Player):
             
             ### TODO
 
-        self.board.removePiece(x, opponent)
+        self.board.remove_piece(x, opponent)
 
 

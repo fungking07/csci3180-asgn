@@ -1,6 +1,6 @@
 """
-Name: Lam King Fung
-Student ID: 1155108968
+Name: XXX
+Student ID: XXX
 """
 
 color_mode = True # if you want to close the color mode, just set it as False.
@@ -11,8 +11,8 @@ else:
     def g(s): return s
     def b(s): return s
 
-def pos2sym(i):
+def pos_to_sym(i):
     return chr(ord('a')+i)
 
-def sym2pos(i):
+def sym_to_pos(i):
     return ord(i) - ord('a')

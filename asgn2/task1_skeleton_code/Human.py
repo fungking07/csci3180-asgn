@@ -45,6 +45,7 @@ class Human(Player):
                     print('Invalid Put-Movement.')
                 else:
                     valid_flag = False
+            
         self.board.put_piece(x, self)
         return x
 
@@ -60,8 +61,15 @@ class Human(Player):
         while valid_flag:
             x = input('{} [Move] (from to): '.format( \
                 g('Player 1') if self.id == 1 else b('Player 2') )).lower().strip().split(' ')
-
-            ### TODO (check the legal input)
+            if len(x[0]) != 1 or len(x[1]) != 1:
+                print('Invalid Put-Movement.')
+            else:
+                xs = sym_to_pos(x[0])
+                xt = sym_to_pos(x[1])
+                if not self.board.check_move(xs, xt, self):
+                    print('Invalid Put-Movement.')
+                else:
+                    valid_flag = False
 
         self.board.move_piece(xs, xt, self)
         return xt

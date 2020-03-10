@@ -69,8 +69,8 @@ class Board():
         The output is a boolean variable.
         """
         valid_flag = True
-        
-        ### TODO
+        if self.state[pos] != '.':
+            valid_flag = False
 
         return valid_flag
 
@@ -84,7 +84,14 @@ class Board():
         if s < 0 or s > 15 or t < 0 or t > 15: 
             valid_flag = False
 
-        ### TODO
+        sym = player.get_symbol()
+        if self.state[s] != sym:
+            valid_flag = False
+        else:
+            input = [s, t]
+            if not((input.sort() in self.edges) and (t == '.')):
+                valid_flag = False
+
 
         return valid_flag
 
@@ -98,23 +105,30 @@ class Board():
         if pos < 0 or pos > 15:
             valid_flag = False
         
-        ### TODO
+        sym = player.get_symbol()
+        if self.state[pos] == sym or self.state[pos] == '.':
+            valid_flag = False
         
         return valid_flag
 
     def put_piece(self, pos, player):
         """This function does the PUT-movement on the board without checking. 
         """
-        ### TODO
+
+        self.state[pos] = player.get_symbol()
+
 
     def move_piece(self, s, t, player):
         """This function does the MOVE-movement on the board without checking.
         """
-        ### TODO
+
+        self.state[s] = '.'
+        self.state[t] = player.get_symbol()
 
     def remove_piece(self, pos, player):
         """This function does the REMOVE-movement on the board without checking.
         """
+
         self.state[pos] = '.'
 
     def form_mill(self, pos, player):

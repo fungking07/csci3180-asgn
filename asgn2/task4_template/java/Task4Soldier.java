@@ -52,7 +52,7 @@ public class Task4Soldier extends Soldier{
   }
 
   public void addCoins(){
-    this.coins++;
+    this.coins += 1;
   }
 
   public void removeCoins(int amount){
@@ -60,6 +60,6 @@ public class Task4Soldier extends Soldier{
   }
 
   public void addShield(){
-    this.shield++;
+    this.shield += 1;
   }
 }

@@ -18,12 +18,12 @@
 
 import java.util.Scanner;
 
-public class Merchant {
+public class Task4Merchant {
   private int elixirPrice;
   private int shieldPrice;
   private Pos pos;
 
-  public Merchant() {
+  public Task4Merchant() {
     // TODO: Initialization.
     elixirPrice = 1;
     shieldPrice = 2;

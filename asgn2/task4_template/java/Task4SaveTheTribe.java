@@ -19,7 +19,7 @@
 import java.util.Random;
 import java.util.Scanner;
 
-public class SaveTheTribe {
+public class Task4SaveTheTribe {
   private Task4Map map;
   private Task4Soldier soldier;
   private Spring spring;

@@ -24,6 +24,18 @@ public class Task4Monster extends Monster{
     super(monsterID, healthCapacity);
   }
 
+  public void actionOnSoldier(Task4Soldier soldier) {
+    if (this.health <= 0) {
+      this.talk("You had defeated me.%n%n");
+    } else {
+      if (this.requireKey(soldier.getKeys())) {
+        this.fight(soldier);
+      } else {
+        this.displayHints();
+      }
+    }
+  }
+
   public void fight(Task4Soldier soldier) {
     boolean fightEnabled = true;
 

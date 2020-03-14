@@ -39,11 +39,11 @@ public class Map {
       }
     } else {
       if (object instanceof Task4Soldier){
-        pos = ((Soldier)object).getPos();
+        pos = ((Task4Soldier)object).getPos();
       } else if (object instanceof Spring) {
         pos = ((Spring)object).getPos();
       } else if (object instanceof Task4Merchant){
-        pos = (Merchant)object.getPos();
+        pos = (Task4Merchant)object.getPos();
       }
 
       if (pos != null) {
@@ -63,13 +63,13 @@ public class Map {
         if (occupiedObject != null) {
           System.out.printf(" ");
           if (occupiedObject instanceof Task4Monster) {
-            ((Monster)occupiedObject).displaySymbol();
+            ((Task4Monster)occupiedObject).displaySymbol();
           } else if (occupiedObject instanceof Spring) {
             ((Spring)occupiedObject).displaySymbol();
           } else if (occupiedObject instanceof Task4Soldier) {
-            ((Soldier)occupiedObject).displaySymbol();
+            ((Task4Soldier)occupiedObject).displaySymbol();
           }else if (occupiedObject instanceof Task4Merchant) {
-            ((Merchant)occupiedObject).displaySymbol();
+            ((Task4Merchant)occupiedObject).displaySymbol();
           }
           System.out.printf(" |");
         } else {

@@ -25,7 +25,7 @@ public class Task4Monster extends Monster{
   }
 
   public void actionOnSoldier(Task4Soldier soldier) {
-    if (this.health <= 0) {
+    if (getHealth() <= 0) {
       this.talk("You had defeated me.%n%n");
     } else {
       if (this.requireKey(soldier.getKeys())) {

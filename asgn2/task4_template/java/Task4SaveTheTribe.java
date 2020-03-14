@@ -20,11 +20,11 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Task4SaveTheTribe {
-  private Task4Map map;
-  private Task4Soldier soldier;
+  private Map map;
+  private Soldier soldier;
   private Spring spring;
-  private Task4Monster[] monsters;
-  private Task4Merchant merchant;
+  private Monster[] monsters;
+  private Merchant merchant;
 
   private boolean gameEnabled;
   

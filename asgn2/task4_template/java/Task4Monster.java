@@ -16,6 +16,8 @@
  * Email Addr : kflam8@cse.cuhk.edu.hk
  */
 
+import java.util.Scanner;
+
 public class Task4Monster extends Monster{
 
   public Task4Monster(int monsterID, int healthCapacity) {
@@ -26,8 +28,8 @@ public class Task4Monster extends Monster{
     boolean fightEnabled = true;
 
     while (fightEnabled) {
-      System.out.printf("       | Monster%d | Soldier |%n", this.monsterID);
-      System.out.printf("Health | %8d | %7d |%n%n", this.health, soldier.getHealth());
+      System.out.printf("       | Monster%d | Soldier |%n", getMonsterID());
+      System.out.printf("Health | %8d | %7d |%n%n", getHealth(), soldier.getHealth());
       System.out.printf("=> What is the next step? (1 = Attack, 2 = Escape, 3 = Use Elixir.) Input: ");
 
       Scanner sc = new Scanner(System.in);
@@ -36,7 +38,7 @@ public class Task4Monster extends Monster{
 
       if (choice.equalsIgnoreCase("1")) {
         if (this.loseHealth()) {
-          System.out.printf("=> You defeated Monster%d. And you gained a coin.%n%n", this.monsterID);
+          System.out.printf("=> You defeated Monster%d. And you gained a coin.%n%n", getMonsterID());
           this.dropItems(soldier);
           fightEnabled = false;
         } else {

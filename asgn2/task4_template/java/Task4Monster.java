@@ -38,6 +38,7 @@ public class Task4Monster extends Monster{
 
       if (choice.equalsIgnoreCase("1")) {
         if (this.loseHealth()) {
+          soldier.addCoins();
           System.out.printf("=> You defeated Monster%d. And you gained a coin.%n%n", getMonsterID());
           this.dropItems(soldier);
           fightEnabled = false;

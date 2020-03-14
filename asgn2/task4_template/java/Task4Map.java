@@ -43,7 +43,7 @@ public class Task4Map {
       } else if (object instanceof Spring) {
         pos = ((Spring)object).getPos();
       } else if (object instanceof Task4Merchant){
-        pos = (Task4Merchant)object.getPos();
+        pos = ((Task4Merchant)object).getPos();
       }
 
       if (pos != null) {

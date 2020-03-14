@@ -40,8 +40,8 @@ public class Task4Merchant {
   public void actionOnSoldier(Task4Soldier soldier) {
     this.talk("Do you want to buy something? (1. Elixir, 2. Shield) Input: ");
     // TODO: Main logic.
-      Scanner choise = new Scanner(System.in);
-      choise = choise.nextLine();
+      Scanner sc = new Scanner(System.in);
+      String choise = sc.nextLine();
       if(choice.equalsIgnoreCase("1")){
         if(soldier.getCoins() >= this.elixirPrice){
           soldier.addElixir();

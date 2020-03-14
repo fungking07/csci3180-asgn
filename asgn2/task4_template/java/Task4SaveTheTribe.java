@@ -138,8 +138,8 @@ public class Task4SaveTheTribe {
 
         if (occupiedObject instanceof Task4Monster) {
           ((Task4Monster)occupiedObject).actionOnSoldier(this.soldier);
-        } else if (occupiedObject instanceof Task4Spring) {
-          ((Task4Spring)occupiedObject).actionOnSoldier(this.soldier);
+        } else if (occupiedObject instanceof Spring) {
+          ((Spring)occupiedObject).actionOnSoldier(this.soldier);
         } else if (occupiedObject instanceof Task4Merchant) {
           ((Task4Merchant)occupiedObject).actionOnSoldier(this.soldier);
         } else {

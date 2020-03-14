@@ -16,7 +16,7 @@
  * Email Addr : kflam8@cse.cuhk.edu.hk
  */
 
-public class Map {
+public class Task4Map {
   private Cell[][] cells;
 
   public Map() {

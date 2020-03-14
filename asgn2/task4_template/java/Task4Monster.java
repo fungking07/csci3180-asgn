@@ -23,7 +23,7 @@ public class Task4Monster extends Monster{
   }
 
   @Override
-  public void actionOnSoldier(Task4Soldier soldier) {
+  public void actionOnSoldier(Soldier soldier) {
     if (soldier.getHealth() <= 0) {
       this.talk("You had defeated me, and here is a coin for you.%n%n");
       soldier.addCoins();

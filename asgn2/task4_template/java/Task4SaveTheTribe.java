@@ -94,7 +94,7 @@ public class Task4SaveTheTribe {
 
     this.map.addObject(this.spring);
 
-    this.spring.setPos(7, 7);
+    this.merchant.setPos(7, 7);
 
     this.map.addObject(this.merchant);
   }

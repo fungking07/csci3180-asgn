@@ -62,7 +62,7 @@ class Computer(Player):
         """
         
         x = random.randint(0, 15)
-        while not self.board.check_remove(x, self):
+        while not self.board.check_remove(x, opponent):
             x = random.randint(0, 15)
         
         print('{} [Remove] (pos): {}'.format( \

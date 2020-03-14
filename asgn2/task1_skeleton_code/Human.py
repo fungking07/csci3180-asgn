@@ -61,13 +61,13 @@ class Human(Player):
         while valid_flag:
             x = input('{} [Move] (from to): '.format( \
                 g('Player 1') if self.id == 1 else b('Player 2') )).lower().strip().split(' ')
-            if len(x[0]) != 1 or len(x[1]) != 1:
-                print('Invalid Put-Movement.')
+            if len(x) != 2 or len(x[0]) != 1 or len(x[1]) != 1:
+                print('Invalid Move-Movement.')
             else:
                 xs = sym_to_pos(x[0])
                 xt = sym_to_pos(x[1])
                 if not self.board.check_move(xs, xt, self):
-                    print('Invalid Put-Movement.')
+                    print('Invalid Move-Movement.')
                 else:
                     valid_flag = False
 
@@ -86,7 +86,14 @@ class Human(Player):
             x = input('{} [Remove] (pos): '.format( \
                 g('Player 1') if self.id == 1 else b('Player 2') )).lower().strip()
             
-            ### TODO
+            if len(x) != 1:
+                print('Invalid Remove-Movement.')
+            else:
+                x = sym_to_pos(x)
+                if not self.board.check_remove(x, self):
+                    print('Invalid Remove-Movement.')
+                else:
+                    valid_flag = False
 
         self.board.remove_piece(x, opponent)
 

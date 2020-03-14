@@ -69,8 +69,11 @@ class Board():
         The output is a boolean variable.
         """
         valid_flag = True
-        if self.state[pos] != '.':
+        if pos < 0 or pos > 15:
             valid_flag = False
+        else:
+            if self.state[pos] != '.':
+                valid_flag = False
 
         return valid_flag
 
@@ -83,14 +86,18 @@ class Board():
         valid_flag = True
         if s < 0 or s > 15 or t < 0 or t > 15: 
             valid_flag = False
-
-        sym = player.get_symbol()
-        if self.state[s] != sym:
-            valid_flag = False
         else:
-            input = [s, t]
-            if not((input.sort() in self.edges) and (t == '.')):
+            sym = player.get_symbol()
+            if self.state[s] != sym:
                 valid_flag = False
+            else:
+                input = [s, t]
+                #print(s)
+                #print(t)
+                #print(not((input.sort() in self.edges) and (self.state[t] == '.')))
+                if not((input.sort() in self.edges) and (self.state[t] == '.')):
+                    valid_flag = False
+        
 
 
         return valid_flag
@@ -104,10 +111,10 @@ class Board():
         valid_flag = True
         if pos < 0 or pos > 15:
             valid_flag = False
-        
-        sym = player.get_symbol()
-        if self.state[pos] == sym or self.state[pos] == '.':
-            valid_flag = False
+        else:
+            sym = player.get_symbol()
+            if self.state[pos] == sym or self.state[pos] == '.':
+                valid_flag = False
         
         return valid_flag
 
@@ -136,8 +143,10 @@ class Board():
         This function returns a Boolean variable that represents whether it forms a mill at this position for the player.
         """
         if_form = False
-        
-        ### TODO
+        sym = player.get_symbol()
+        for i, j, k in self.mills:
+            if (self.state[i] == sym and self.state[j] == sym and  self.state[k] == sym ):
+                if_form = True
 
         return if_form
 
@@ -152,7 +161,10 @@ class Board():
         # check whether the opponent has less than 2 pieces. 
         num_pieces = 0
 
-        ### TODO (check every position to calculate the number of pieces for the player)
+        x = opponent.get_symbol()
+        for i in self.state:
+            if i == x:
+                num_pieces = num_pieces + 1
 
         if num_pieces <= 2: 
             if_win = True
@@ -165,8 +177,8 @@ class Board():
                 if self.state[i] == opponent.get_symbol():
                     piece_can_move = False
                     for j, k in self.edges:
-                        ### TODO (check every edge to check whether there is a legal move)
-
+                        if self.check_move(j, k, opponent):
+                            piece_can_move = True
                     if piece_can_move:
                         can_move = True
                         break

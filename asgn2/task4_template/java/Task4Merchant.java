@@ -46,17 +46,17 @@ public class Task4Merchant {
         if(soldier.getCoins() >= this.elixirPrice){
           soldier.addElixir();
           soldier.removeCoins(this.elixirPrice);
-          this.talk("I'll take 1 coin from you, and here is your elixir. Thank You!");
+          this.talk("I'll take 1 coin from you, and here is your elixir. Thank You!%n");
         } else {
-          this.talk("How pathetic! This poor player wants to buy elixir without paying the right amount. Get out of here!");
+          this.talk("How pathetic! This poor player wants to buy elixir without paying the right amount. Get out of here!%n");
         }
       }else if(choice.equalsIgnoreCase("2")){
         if(soldier.getCoins() >= this.shieldPrice){
           soldier.addShield();
           soldier.removeCoins(this.shieldPrice);
-          this.talk("I'll take 2 coins from you, and here is your shield. Thank You!");
+          this.talk("I'll take 2 coins from you, and here is your shield. Thank You!%n");
         } else {
-          this.talk("How pathetic! This poor player wants to buy shield without paying the right amount. Get out of here!");
+          this.talk("How pathetic! This poor player wants to buy shield without paying the right amount. Get out of here!%n");
         }
       }else{
         System.out.printf("=> Illegal choice!%n%n");

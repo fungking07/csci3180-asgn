@@ -137,7 +137,7 @@ public class Task4SaveTheTribe {
         Object occupiedObject = this.map.getOccupiedObject(newRow, newColumn);
 
         if (occupiedObject instanceof Task4Monster) {
-          ((Task4Monster)occupiedObject).actionOnT4Soldier(this.soldier);
+          ((Task4Monster)occupiedObject).actionOnSoldier(this.soldier);
         } else if (occupiedObject instanceof Spring) {
           ((Spring)occupiedObject).actionOnSoldier(this.soldier);
         } else if (occupiedObject instanceof Task4Merchant) {

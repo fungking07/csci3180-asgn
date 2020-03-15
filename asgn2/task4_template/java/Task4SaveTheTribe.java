@@ -109,7 +109,7 @@ public class Task4SaveTheTribe {
       this.map.displayMap();
       this.soldier.displayInformation();
 
-      System.out.printf("%n=> What is the next step? (W = Up, S = Down, A = Left, D = Light.) Input: ");
+      System.out.printf("%n=> What is the next step? (W = Up, S = Down, A = Left, D = Right.) Input: ");
       
       String move = sc.nextLine();
 

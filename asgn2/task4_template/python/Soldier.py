@@ -22,7 +22,7 @@
 from Pos import *
 import random
 
-class Soldier():
+class Soldier(object):
     def __init__(self):
         self._health = 100
         self._num_elixirs = 2

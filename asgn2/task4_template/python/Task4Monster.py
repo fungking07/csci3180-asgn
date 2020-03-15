@@ -19,60 +19,13 @@
 """
 
 from Pos import *
-from Soldier import *
+from Monster import Monster
+from Task4Soldier import *
 
-class Monster():
+class Task4Monster(Monster):
     def __init__(self, monster_id, health_capacity):
-        self._monster_id = monster_id
-        self._health_capacity = health_capacity
-        self._health = health_capacity
-        self._pos = Pos()
-        self._drop_item_list = list()
-        self._hint_list = list()
+        super(Task4Monster, self).__init__(monster_id, health_capacity)
 
-    def add_drop_item(self, key):
-        self._drop_item_list.append(key)
-    
-    def add_hint(self, monster_id):
-        self._hint_list.append(monster_id)
-    
-    def get_monster_id(self):
-        return self._monster_id
-    
-    def get_pos(self):
-        return self._pos
-    
-    def set_pos(self, row, column):
-        self._pos.set_pos(row, column)
-    
-    def get_health_capacity(self):
-        self._health_capacity
-    
-    def get_health(self):
-        return self._health
-    
-    def lose_health(self):
-        self._health -= 10
-        return self._health <= 0
-    
-    def recover(self, healing_power):
-        self._health = healing_power
-    
-    def action_on_soldier(self, soldier):
-        if(self._health <= 0):
-            self.talk('You had defeated me.\n')
-        else:
-            if(self.require_key(soldier.get_keys())):
-                self.fight(soldier)
-            else:
-                self.display_hints()
-    
-    def require_key(self, keys):
-        return self._monster_id in keys
-    
-    def display_hints(self):
-        self.talk("Defeat Monster {} first.\n".format(self._hint_list))
-    
     def fight(self, soldier):
         fight_enabled = True
 
@@ -83,6 +36,7 @@ class Monster():
 
             if choise == '1':
                 if self.lose_health():
+                    soldier.add_coins()
                     print("=> You defeated Monster{}.\n".format(self._monster_id))
                     self.drop_items(soldier)
                     fight_enabled = False
@@ -100,13 +54,3 @@ class Monster():
                     soldier.use_elixirs()
             else:
                 print("=> Illegal choice!\n")
-
-    def drop_items(self, soldier):
-        for item in self._drop_item_list:
-            soldier.add_key(item)
-    
-    def talk(self, text):
-        print("Mosnter{}: {}".format(self._monster_id, text), end = "")
-
-    def display_symbol(self):
-        print('M', end="")

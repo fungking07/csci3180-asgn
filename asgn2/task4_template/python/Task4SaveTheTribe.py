@@ -21,56 +21,58 @@
 from Map import *
 from Cell import *
 from Pos import *
-from Monster import *
-from Soldier import *
+from Task4Monster import *
+from Task4Soldier import *
+from Task4Merchant import *
 from Spring import *
 import random
 
-class SaveTheTribe():
+class Task4SaveTheTribe():
     def __init__(self):
         self._map = Map()
-        self._soldier = Soldier()
+        self._soldier = Task4Soldier()
         self._spring = Spring()
-        self._monsters = [Monster(i, random.randint(0,5) * 10 + 30) for i in range(1, 8)]
+        self._monsters = [Task4Monster(i, random.randint(0,5) * 10 + 30) for i in range(1, 8)]
+        self._merchant = Task4Merchant()
         self._game_enabled = True
   
     def initialize(self):
-        self._monsters[0] = Monster(1, random.randint(0,5) * 10 + 30)
+        self._monsters[0] = Task4Monster(1, random.randint(0,5) * 10 + 30)
         self._monsters[0].set_pos(4,1)
         self._monsters[0].add_drop_item(2)
         self._monsters[0].add_drop_item(3)
 
-        self._monsters[1] = Monster(2, random.randint(0,5) * 10 + 30)
+        self._monsters[1] = Task4Monster(2, random.randint(0,5) * 10 + 30)
         self._monsters[1].set_pos(3, 3)
         self._monsters[1].add_drop_item(3)
         self._monsters[1].add_drop_item(6)
         self._monsters[1].add_hint(1)
         self._monsters[1].add_hint(5)
 
-        self._monsters[2] = Monster(3, random.randint(0,5) * 10 + 30)
+        self._monsters[2] = Task4Monster(3, random.randint(0,5) * 10 + 30)
         self._monsters[2].set_pos(5, 3)
         self._monsters[2].add_drop_item(4)
         self._monsters[2].add_hint(1)
         self._monsters[2].add_hint(2)
 
-        self._monsters[3] = Monster(4, random.randint(0,5) * 10 + 30)
+        self._monsters[3] = Task4Monster(4, random.randint(0,5) * 10 + 30)
         self._monsters[3].set_pos(5, 5)
         self._monsters[3].add_hint(3)
         self._monsters[3].add_hint(6)
 
-        self._monsters[4] = Monster(5, random.randint(0,5) * 10 + 30)
+        self._monsters[4] = Task4Monster(5, random.randint(0,5) * 10 + 30)
         self._monsters[4].set_pos(1, 4)
         self._monsters[4].add_drop_item(2)
         self._monsters[4].add_drop_item(6)
 
-        self._monsters[5] = Monster(6, random.randint(0,5) * 10 + 30)
+        self._monsters[5] = Task4Monster(6, random.randint(0,5) * 10 + 30)
         self._monsters[5].set_pos(3, 5)
         self._monsters[5].add_drop_item(4)
         self._monsters[5].add_drop_item(7)
         self._monsters[5].add_hint(2)
         self._monsters[5].add_hint(5)
 
-        self._monsters[6] = Monster(7, random.randint(0,5) * 10 + 30)
+        self._monsters[6] = Task4Monster(7, random.randint(0,5) * 10 + 30)
         self._monsters[6].set_pos(4, 7)
         self._monsters[6].add_drop_item(-1)
         self._monsters[6].add_hint(6)
@@ -86,6 +88,10 @@ class SaveTheTribe():
         self._spring.set_pos(7, 4)
 
         self._map.add_object(self._spring)
+
+        self._merchant.set_pos(7, 7)
+
+        self._map.add_object(self._merchant)
 
     def start(self):
         print("=> Welcome to the desert!")
@@ -134,6 +140,6 @@ class SaveTheTribe():
                 self._game_enabled = False
 
 if __name__ == '__main__':
-    game = SaveTheTribe()
+    game = Task4SaveTheTribe()
     game.initialize()
     game.start()

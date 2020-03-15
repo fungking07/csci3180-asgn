@@ -88,14 +88,13 @@ class Board():
             valid_flag = False
         else:
             sym = player.get_symbol()
+            #print(self.state[s] != sym)
             if self.state[s] != sym:
                 valid_flag = False
             else:
-                input = [s, t]
-                #print(s)
-                #print(t)
-                #print(not((input.sort() in self.edges) and (self.state[t] == '.')))
-                if not((input.sort() in self.edges) and (self.state[t] == '.')):
+                input1 = [s, t]
+                input2 = [t, s]
+                if not(((input1 in self.edges) or (input2 in self.edges))and (self.state[t] == '.')):
                     valid_flag = False
         
 

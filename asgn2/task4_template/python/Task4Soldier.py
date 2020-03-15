@@ -18,61 +18,38 @@
  */
 """
 
-
+from Soldier import Soldier
 from Pos import *
 import random
 
-class Soldier():
+class Task4Soldier(Soldier):
     def __init__(self):
-        self._health = 100
-        self._num_elixirs = 2
-        self._pos = Pos()
-        self._keys = list()
-    
-    def get_health(self):
-        return self._health
-    
+        super(Task4Soldier,self).__init__()
+        self._coins = 0
+        self._shield = 0
+                    
     def lose_health(self):
-        self._health -= 10
-        return self._health <= 0
-    
-    def recover(self, healing_power):
-        total_health = healing_power + self._health
-        self._health = 100 if total_health >= 100 else total_health
-    
-    def get_pos(self):
-        return self._pos
-    
-    def set_pos(self, row, column):
-        self._pos.set_pos(row, column)
-
-    def move(self, row, column):
-        self._pos.set_pos(row, column)
-    
-    def get_keys(self):
-        self._keys.sort()
-        return set(self._keys)
-
-    def add_key(self, key):
-        if key not in self._keys:
-            self._keys.append(key)
-    
-    def get_num_elixirs(self):
-        return self._num_elixirs
-    
-    def add_elixirs(self):
-        self._num_elixirs +=1
-    
-    def use_elixirs(self):
-        x = random.randint(0, 5)
-        self.recover(x + 15)
-        self._num_elixirs -=1
+        if(self._shield * 5 >= 10):
+            self._health -= 0
+        else:
+            self._health -= (10 - self._shield * 5)
 
     def display_information(self):
-        print("Health: {}.".format(self._health))
-        print("Position (row, column): ({}, {}).".format(self._pos.get_row(), self._pos.get_column()))
-        print("Keys: {}.".format(self._keys))
-        print("Elixirs: {}.".format(self._num_elixirs))
+        super(Task4Soldier, self).display_information()
+        print("Defence: {}.".format(self.get_shield() * 5))
+        print("Coins: {}.".format(self.get_coins()))
     
-    def display_symbol(self):
-        print('S', end="")
+    def get_coins(self):
+        return self._coins
+    
+    def get_shield(self):
+        return self._shield
+    
+    def add_coins(self):
+        self._coins += 1
+    
+    def remove_coins(self, amount):
+        self._coins -= amount
+    
+    def add_shield(self):
+        self._shield += 1

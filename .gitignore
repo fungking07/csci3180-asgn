@@ -1,3 +1,5 @@
 
 asgn1/a.exe
 *.out
+*.pyc
+*.class

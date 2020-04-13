@@ -86,7 +86,7 @@ sub main {
         }
 
         # ...
-
+        $cur_player -> payDue();
     }
 }
 

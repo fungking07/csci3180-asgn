@@ -52,14 +52,23 @@ sub getReturn {
 	#take card 1 by 1
     my ($self) = @_;
     my @cards = @{$self->{_cards}};
-    my $maximun = $#cards;
-    my $top = $cards[$maximun];
-    if ($top eq "J" && $maximun ne -1){
-        return ($#cards + 1);
-    }
-    my $i = 0;
-    while($cards[$i] ne $cards[$maximun]){$i++}
-    return ($maximun - $i);
+    my $index = -1;
+		if($cards[$#cards] eq "J" && ~~@cards != 1){
+			return (~~@cards);
+		}
+		my $i = 0;
+		while($i < ~~@cards){
+			if($cards[$i] eq $cards[$#cards]){
+				$index = $i;
+				last;
+			}
+			$i += 1;
+		}
+		$index = ~~@cards - $index;
+		if($index == 1){
+			$index = 0;
+		}
+		return $index;
 }
 
 
@@ -86,22 +95,24 @@ sub start_game {
 
 	$self -> {_deck} -> shuffle();
 	my @shuffled_deck = $self -> {_deck} -> AveDealCards($numofplayers);
-	for my $i(0..$#shuffled_deck){
-		for my $j(@{$shuffled_deck[$i]}){
-			$players[$i] -> getCards($j);
-		}
+	my $i = 0;
+	while($i < ~~@players){
+		$players[$i] -> getCards($shuffled_deck[$i]);
+		$i += 1;
 	}
 	print "\n\n";
 	print "Game begin!!!";
 	print "\n\n";
 
-	$self -> {_deck} -> shuffle();
-	my $numofcard = $self -> {_deck} -> AveDealCards($numofplayers);
 	my $flag = 1;
 	while($flag){
+		$turn += 1;
 		foreach (@players){
 			my $name = $_ -> {_name};
 			my $numofcard = $_ -> numCards();
+			if($numofcard == 0){
+				next;
+			}
 			print "Player $name has $numofcard cards before deal.\n";
 			print "=====Before player's deal=======\n";
 			$self -> showCards();
@@ -111,13 +122,14 @@ sub start_game {
 			push(@{$self -> {_cards}}, $dealt);
 
 			my $get_retuen = $self->getReturn();
-			if($get_retuen ne 1){
-				my $card;
-				while($get_retuen){
-					$card = pop(@{$self->{_cards}});
-					push(@{$_->{_cards}}, $card);
-					$get_retuen -= 1;
+			if($get_retuen){
+				my @stack = ();
+				my $i = 0;
+				while($i < $get_retuen){
+					push @stack, pop(@{$self->{_cards}});
+					$i += 1;
 				}
+				$_ -> getCards(\@stack);
 			}
 			
 
@@ -125,14 +137,25 @@ sub start_game {
 			print "=====After player's deal=======\n";
 			$self -> showCards();
 			print "================================\n";
-			print "Player $name has $numofcard cards after deal.\n\n";
-			$turn += 1;
-			if($numofplayers eq 0){
+			print "Player $name has $numofcard cards after deal.\n";
+
+			if($numofcard eq 0){
 				print "Player $name has no cards, out!\n";
 			}
 			print "\n";
+			$flag = 0;
+			foreach(@players){
+				if ($_ -> numCards()){
+					$name = $_ -> {_name};
+					$flag += 1;
+				}
+			}
+			$flag -= 1;
+			if($flag == 0){
+				print("Winner is $name in game $turn\n");
+				last;
+			}
 		}
-		#$flag = 0;
 	}
 }
 

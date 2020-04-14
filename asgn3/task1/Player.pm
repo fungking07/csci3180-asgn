@@ -33,8 +33,8 @@ sub new {
 }
 
 sub getCards {
-  my ($self) = @_;
-  my ($card) = @_;
+  my ($self) = shift @_;
+  my ($card) = shift @_;
   push(@{$self -> {_cards}},@{$card});
 }
 

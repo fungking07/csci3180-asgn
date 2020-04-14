@@ -1,3 +1,21 @@
+"""*
+* CSCI3180 Principles of Programming Languages
+*
+* --- Declaration ---
+*
+* I declare that the assignment here submitted is original except for source
+* material explicitly acknowledged. I also acknowledge that I am aware of
+* University policy and regulations on honesty in academic work, and of the
+* disciplinary guidelines and procedures applicable to breaches of such policy
+* and regulations, as contained in the website
+* http://www.cuhk.edu.hk/policy/academichonesty/
+*
+* Assignment 3
+* Name : Lam King Fung
+* Student ID : 1155108968
+* Email Addr : kflam8@cse.cuhk.edu.hk
+*/"""
+
 import random
 
 random.seed(0) # don't touch!
@@ -47,6 +65,11 @@ class Bank:
     def stepOn(self):
 
         # ...
+        Player.income = 2000
+        Player.tax_rate = 0
+        Player.due = 0
+        Player.handling_fee_rate = 0
+        cur_player.payDue()
 
         return
 
@@ -60,6 +83,20 @@ class Jail:
     def stepOn(self):
 
         # ...
+        response = input("Pay $1000 to reduce the prison round to 1?  [y/n]\n")
+        while(response != "y" and response != "n"):
+            response = input("Pay $1000 to reduce the prison round to 1?  [y/n]\n")
+
+        Player.prison_rounds = 2
+        if(response == "y"):
+            if (cur_player.money < 1100):
+                print ("You do not have enough money to reduce the prison round!\n")
+            else:
+                Player.prison_rounds = 1
+                Player.income = 0
+                Player.tax_rate = 0
+                Player.due = 1000
+                Player.handling_fee_rate = 0.1
 
         cur_player.putToJail()
 
@@ -83,28 +120,61 @@ class Land:
     def buyLand(self):
 
         # ...
+        Player.due = 0
+        if(cur_player.money < self.land_price * 0.1):
+            print("You do not have enough money to buy the land!\n")
+        else:
+            self.owner = cur_player
+            Player.income = 0
+            Player.tax_rate = 0
+            Player.due = 1000
+            Player.handling_fee_rate = 0.1
 
         cur_player.payDue()
     
     def upgradeLand(self):
         
         # ...
+        land_level = self.level
+        Player.due = 0
+        if(cur_player.money < self.upgrade_fee[land_level]):
+            print("You do not have enough money to upgrade the land!")
+        else:
+            Player.income = 0
+            Player.tax_rate = 0
+            Player.due = self.upgrade_fee[land_level]
+            Player.handling_fee_rate = 0.1
+            self.level += 1
 
         cur_player.payDue()
     
     def chargeToll(self):
         
         # ...
-
+        land_level = self.level
+        toll = 0
+        if(cur_player.money < self.toll[land_level]):
+            toll = cur_player.money
+        else:
+            toll = self.toll[land_level]
+        
+        Player.income = 0
+        Player.tax_rate = 0
+        Player.due = toll
+        Player.handling_fee_rate = 0
         cur_player.payDue()
 
         # ...
+        Player.income = toll
+        Player.tax_rate = self.tax_rate[land_level]
+        Player.due = 0
+        Player.handling_fee_rate = 0
 
         self.owner.payDue()
 
     def stepOn(self):
 
-        # ... 
+        # ...
 
         return
 

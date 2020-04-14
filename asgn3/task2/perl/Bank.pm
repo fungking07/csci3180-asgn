@@ -16,7 +16,6 @@
 # * Email Addr : kflam8@cse.cuhk.edu.hk
 # */
 
-
 use strict;
 use warnings;
 require "./Player.pm";
@@ -35,9 +34,12 @@ sub print {
 
 sub stepOn {
 
-    local $income = 2000;
-    local $tax_rate = 0;
-    local $due = 0;
+    # ...
+    my $self = shift;
+    local $Player::income = 2000;
+    local $Player::tax_rate = 0;
+    local $Player::due = 0;
+    local $Player::handling_fee_rate = 0;
 
     $main::cur_player->payDue();
     print("You received \$2000 from the Bank!\n");

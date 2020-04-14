@@ -67,7 +67,12 @@ sub printGameBoard {
 sub terminationCheck {
 
     # ...
-
+    foreach (@players){
+        if ($_ -> {money} == 0){
+            return 0;
+        }
+    }
+    return 1;
 }
 
 sub throwDice {
@@ -86,8 +91,42 @@ sub main {
         }
 
         # ...
+        $cur_player_idx = $cur_round % 2;
+        $cur_player = $players[$cur_player_idx];
+        print "Player $cur_player->{name}'s turn\n";
         $cur_player -> payDue();
+        if($cur_player -> {num_rounds_in_jail} == 0){
+            print "Pay \$500 to throw two dice? [y/n]\n";
+            my $response = <STDIN>;
+            chomp ($response);
+            while ($response ne "y" && $response ne "n"){
+                print "Pay \$500 to throw two dice? [y/n]\n";
+                $response = <STDIN>;
+                chomp ($response);
+            }
+            if($response eq "y"){
+                if($cur_player -> {money} < 525){
+                    print "You do not have enough money to throw two dice!\n";
+                }else{
+                    $num_dices = 2;
+                    local $Player::due = 500;
+                    local $Player::handling_fee_rate = 0.05;
+                    $cur_player -> payDue();
+                }   
+            }
+            my $point = throwDice();
+            print "Points of dice: $point\n";
+            $cur_player -> move($point);
+            printGameBoard();
+            $game_board[$cur_player -> {position}] -> stepOn();
+        }else{
+           $cur_player -> move();
+        }
+        $cur_round += 1;
     }
+    $cur_player_idx = $cur_round % 2;
+    $cur_player = $players[$cur_player_idx];
+    print "Game over! winner: $cur_player->{name}.";
 }
 
 main();

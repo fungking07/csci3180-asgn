@@ -93,7 +93,7 @@ sub main {
         # ...
         $cur_player_idx = $cur_round % 2;
         $cur_player = $players[$cur_player_idx];
-        print "Player $cur_player->{name}'s turn\n";
+        print "Player $cur_player->{name}'s turn.\n";
         $cur_player -> payDue();
         if($cur_player -> {num_rounds_in_jail} == 0){
             print "Pay \$500 to throw two dice? [y/n]\n";
@@ -120,7 +120,7 @@ sub main {
             printGameBoard();
             $game_board[$cur_player -> {position}] -> stepOn();
         }else{
-           $cur_player -> move();
+           $cur_player -> move(0);
         }
         $cur_round += 1;
     }

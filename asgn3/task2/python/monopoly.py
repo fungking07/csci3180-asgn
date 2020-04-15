@@ -129,7 +129,7 @@ class Land:
         Player.due = 0
         Player.handling_fee_rate = 0
 
-        if(cur_player.money < self.land_price * 0.1):
+        if(cur_player.money < self.land_price * 1.1):
             print("You do not have enough money to buy the land!")
         else:
             self.owner = cur_player
@@ -149,7 +149,7 @@ class Land:
         Player.handling_fee_rate = 0
         
         land_level = self.level
-        if(cur_player.money < self.upgrade_fee[land_level]):
+        if(cur_player.money < self.upgrade_fee[land_level] * 1.1):
             print("You do not have enough money to upgrade the land!")
         else:
             Player.income = 0

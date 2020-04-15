@@ -50,7 +50,7 @@ sub buyLand {
     # ...
     my $self = shift;
     local $Player::due = 0;
-    if ($main::cur_player -> {money} < ($land_price * $hfr)){
+    if ($main::cur_player -> {money} < ($land_price * (1 + $hfr))){
         print "You do not have enough money to buy the land!\n";
     }else{
         $self -> {owner} = $main::cur_player;
@@ -67,7 +67,7 @@ sub upgradeLand {
     my $self = shift;
     my $land_level = shift;
     local $Player::due = 0;
-    if($main::cur_player -> {money} < ($upgrade_fee[$land_level] * $hfr)){
+    if($main::cur_player -> {money} < ($upgrade_fee[$land_level] * (1 + $hfr))){
         print "You do not have enough money to upgrade the land!";
     }else{
         local $Player::due = $upgrade_fee[$land_level];
